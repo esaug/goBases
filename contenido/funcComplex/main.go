@@ -45,6 +45,25 @@ func Aplicar(f func(int) int, n int) int {
 	return f(n)
 }
 
+// Superior order function
+func double(f func(int) int, x int) int {
+	return f(x * 2)
+}
+
+func addOne(n int) int {
+	return n + 1
+}
+
+// Anom func
+
+func increment() func() int {
+	i := 0
+	return func() int {
+		i++
+		return i
+	}
+}
+
 func main() {
 	fmt.Printf("%v \n", sum(20, 30, 52, 67, 98))
 	printData("Hola", 28, true, "Halo")
@@ -59,4 +78,11 @@ func main() {
 	r2 := Aplicar(Triplicar, 5)
 
 	fmt.Println(r1, r2)
+
+	rx := double(addOne, 3)
+	fmt.Printf("Result: %v", rx)
+
+	valueIncremented := increment()
+
+	fmt.Printf("Sum value: %v", valueIncremented)
 }
